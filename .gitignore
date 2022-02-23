@@ -1,0 +1,5 @@
+.terraform
+.idea
+venv
+.terraform.lock.hcl
+devec2key.pem
