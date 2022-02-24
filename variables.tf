@@ -1,3 +1,10 @@
+// Define subnets and VPC CIDR for network module to provision application environment
+
+variable "vpc_cidr" {
+  default = "10.1.0.0/16"
+}
+
+
 variable "subnets" {
     default = [
     {
@@ -29,8 +36,8 @@ variable "backend_port" {
 
 variable "autoscaling" {
   default = {
-    az_min = 1
-    az_max = 1
-    az_desired = 1
+    min = 2
+    max = 4
+    desired = 2
   }
 }

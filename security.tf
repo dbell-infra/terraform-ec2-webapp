@@ -1,5 +1,5 @@
 resource "aws_security_group" "elb_security_group" {
-  name        = "ELB-Security-Group"
+  name        = "${var.application_name}-ELB-Security-Group"
   description = "Manage ELB Traffic"
   vpc_id      = module.network.vpc_id
 
@@ -25,7 +25,7 @@ resource "aws_security_group" "elb_security_group" {
 }
 
 resource "aws_security_group" "application_server_security_group" {
-  name        = "WebApp-Server-Security-Group"
+  name        = "${var.application_name}-Server-Security-Group"
   description = "Manage traffic to app servers"
   vpc_id      = module.network.vpc_id
 

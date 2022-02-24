@@ -1,13 +1,15 @@
 resource "aws_autoscaling_group" "webapp_asg" {
-  for_each = aws_launch_template.web_app_launch_template
-  availability_zones = [each.value.tags.availability_zone]
-  desired_capacity   = var.autoscaling.az_desired
-  max_size           = var.autoscaling.az_max
-  min_size           = var.autoscaling.az_min
+  vpc_zone_identifier = [for subnet in module.network.subnet_ids: subnet.subnet_id]
+  desired_capacity   = var.autoscaling.desired
+  max_size           = var.autoscaling.max
+  min_size           = var.autoscaling.min
   target_group_arns = [aws_lb_target_group.webapp_tg.arn]
 
-  launch_template {
-    id      = each.value.id
-    version = "$Latest"
+  tag {
+    key                 = "Name"
+    value               = "${var.application_name}-worker"
+    propagate_at_launch = true
   }
+
+  launch_configuration = aws_launch_configuration.as_conf.name
 }
