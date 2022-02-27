@@ -26,6 +26,10 @@ variable "application_name" {
   default = "example-webapp"
 }
 
+variable "application_version" {
+  default = "v0.2"
+}
+
 variable "frontend_port" {
   default = "80"
 }

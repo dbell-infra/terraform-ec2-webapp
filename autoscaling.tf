@@ -11,5 +11,10 @@ resource "aws_autoscaling_group" "webapp_asg" {
     propagate_at_launch = true
   }
 
+  instance_refresh{
+    strategy = "Rolling"
+
+  }
+
   launch_configuration = aws_launch_configuration.as_conf.name
 }

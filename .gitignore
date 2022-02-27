@@ -3,3 +3,5 @@
 venv
 .terraform.lock.hcl
 devec2key.pem
+terraform.tfstate
+terraform.tfstate.backup
